@@ -8,11 +8,11 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TWBlocks",
-  description: "Free SaaS website blocks based on React with shadcn & Tailwind",
+  title: "Opulent \u2014 Industry Use Cases",
+  description:
+    "Real-world enterprise tasks validated against the Apex Agent QA benchmark. 50 tasks, 38 categories, 80+ documents across Financial Services, Legal, Healthcare, Manufacturing, Market Intelligence, Government, and Enterprise Operations.",
   keywords:
-    "tailwindcss, react, shadcn, design, webdesign, website, saas templates, saas website templates",
-  authors: [{ name: "Tommy Jepsen", url: "https://tommyjepsen.com" }],
+    "enterprise AI, document processing, financial analysis, legal compliance, healthcare regulatory, market intelligence, opulent",
 };
 
 export default function RootLayout({
