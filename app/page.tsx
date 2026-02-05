@@ -1,5 +1,5 @@
-"use client";
-
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Landmark,
   Scale,
@@ -8,26 +8,27 @@ import {
   LineChart,
   Building2,
   Briefcase,
+  MoveRight,
+  PhoneCall,
 } from "lucide-react";
-import { UseCasesHero } from "@/components/use-cases/use-cases-hero";
-import { BenchmarkStats } from "@/components/use-cases/benchmark-stats";
-import { IndustrySection } from "@/components/use-cases/industry-section";
-import { BenchmarkSummary } from "@/components/use-cases/benchmark-summary";
-import { UseCasesCTA } from "@/components/use-cases/use-cases-cta";
+
+/* ────────────────────────────────────────
+   DATA
+   ──────────────────────────────────────── */
 
 const industries = [
   {
     id: "financial-services",
     icon: Landmark,
-    badge: "14 Validated Tasks  \u00b7  8 Sub-Categories",
+    badge: "14 Validated Tasks  ·  8 Sub-Categories",
     title: "Financial Services & Investment Banking",
     subtitle:
-      "The deepest vertical in the benchmark \u2014 14 validated tasks across LBO modeling, SEC filings, M&A, compliance, and more.",
+      "The deepest vertical in the benchmark — 14 validated tasks across LBO modeling, SEC filings, M&A, compliance, and more.",
     useCases: [
       {
         title: "Leveraged Buyout Modeling",
         description:
-          "Opulent ingests complex LBO models (PLTF_LBO_v07, v08) and performs autonomous financial analysis \u2014 sensitivity tables, IRR calculations, debt schedule validation, and exit scenario modeling. Analysts upload Excel workbooks and receive structured findings with flagged assumptions.",
+          "Opulent ingests complex LBO models (PLTF_LBO_v07, v08) and performs autonomous financial analysis — sensitivity tables, IRR calculations, debt schedule validation, and exit scenario modeling. Analysts upload Excel workbooks and receive structured findings with flagged assumptions.",
         artifacts:
           "Multi-version LBO spreadsheets with iterative model refinement",
       },
@@ -48,7 +49,7 @@ const industries = [
       {
         title: "Stock Transaction Forensics",
         description:
-          "Historical and current stock transaction analysis \u2014 pattern detection, wash sale identification, cost basis reconciliation, and regulatory compliance checks. Opulent processes transaction spreadsheets and flags anomalies against IRS and SEC reporting thresholds.",
+          "Historical and current stock transaction analysis — pattern detection, wash sale identification, cost basis reconciliation, and regulatory compliance checks. Opulent processes transaction spreadsheets and flags anomalies against IRS and SEC reporting thresholds.",
         artifacts:
           "Stock transaction records (current + historic XLSX)",
       },
@@ -74,7 +75,7 @@ const industries = [
       {
         title: "Financial Modeling",
         description:
-          "General-purpose calculation sheet processing \u2014 Opulent parses formula-heavy spreadsheets, validates computational logic, identifies circular references, and documents model assumptions for audit readiness.",
+          "General-purpose calculation sheet processing — Opulent parses formula-heavy spreadsheets, validates computational logic, identifies circular references, and documents model assumptions for audit readiness.",
         artifacts: "Calculation spreadsheets (XLSX)",
       },
       {
@@ -118,10 +119,10 @@ const industries = [
   {
     id: "legal-compliance",
     icon: Scale,
-    badge: "12 Validated Tasks  \u00b7  10 Sub-Categories",
+    badge: "12 Validated Tasks  ·  10 Sub-Categories",
     title: "Legal & Compliance",
     subtitle:
-      "Comprehensive coverage from contract review to maritime law \u2014 12 validated tasks across 10 sub-categories.",
+      "Comprehensive coverage from contract review to maritime law — 12 validated tasks across 10 sub-categories.",
     useCases: [
       {
         title: "Contract Termination Review",
@@ -132,7 +133,7 @@ const industries = [
       {
         title: "Lease Portfolio Management",
         description:
-          "Multi-document lease analysis \u2014 extension options, amendments, and assignment/assumption agreements. Opulent tracks critical dates, calculates financial obligations across lease modifications, and generates consolidated lease abstracts.",
+          "Multi-document lease analysis — extension options, amendments, and assignment/assumption agreements. Opulent tracks critical dates, calculates financial obligations across lease modifications, and generates consolidated lease abstracts.",
         artifacts:
           "Lease extension notices, amendment agreements, assignment documents (3-document portfolio)",
       },
@@ -152,7 +153,7 @@ const industries = [
       {
         title: "Evidence Law Research",
         description:
-          "Multi-source evidentiary analysis \u2014 personal knowledge requirements (Rule 602), best evidence rule (Rule 1002), and lay opinion testimony (Rule 701). Opulent synthesizes rules across sources and generates admissibility checklists for trial preparation.",
+          "Multi-source evidentiary analysis — personal knowledge requirements (Rule 602), best evidence rule (Rule 1002), and lay opinion testimony (Rule 701). Opulent synthesizes rules across sources and generates admissibility checklists for trial preparation.",
         artifacts:
           "Federal Rules of Evidence analysis documents (3 specialized PDFs)",
       },
@@ -172,7 +173,7 @@ const industries = [
       {
         title: "Maritime & Transportation Law",
         description:
-          "Jones Act compliance analysis \u2014 vessel documentation requirements (46 CFR 67.19, 67.97), cabotage restrictions (46 U.S.C. Section 55102), and federal maritime legislation. Opulent evaluates vessel eligibility and coastwise trade restrictions.",
+          "Jones Act compliance analysis — vessel documentation requirements (46 CFR 67.19, 67.97), cabotage restrictions (46 U.S.C. Section 55102), and federal maritime legislation. Opulent evaluates vessel eligibility and coastwise trade restrictions.",
         artifacts:
           "CFR regulations, USC statutes, federal maritime law (4-document corpus)",
       },
@@ -191,7 +192,7 @@ const industries = [
       {
         title: "Regulatory Cross-Reference",
         description:
-          "Multi-jurisdiction regulatory comparison \u2014 federal (DMCA, FCRA) vs. state (NY GBL) vs. international (GDPR). Opulent maps overlapping requirements, identifies conflicts, and generates unified compliance matrices for multinational operations.",
+          "Multi-jurisdiction regulatory comparison — federal (DMCA, FCRA) vs. state (NY GBL) vs. international (GDPR). Opulent maps overlapping requirements, identifies conflicts, and generates unified compliance matrices for multinational operations.",
         artifacts: "Multi-jurisdiction regulatory documents",
       },
       {
@@ -205,10 +206,10 @@ const industries = [
   {
     id: "healthcare-pharma",
     icon: HeartPulse,
-    badge: "4 Validated Tasks  \u00b7  Regulatory Compliance",
+    badge: "4 Validated Tasks  ·  Regulatory Compliance",
     title: "Healthcare & Pharmaceutical",
     subtitle:
-      "Regulatory compliance across FDA and state health codes \u2014 4 validated tasks covering drug labeling, advertising, and facility compliance.",
+      "Regulatory compliance across FDA and state health codes — 4 validated tasks covering drug labeling, advertising, and facility compliance.",
     useCases: [
       {
         title: "FDA Drug Labeling Compliance",
@@ -231,7 +232,7 @@ const industries = [
       {
         title: "Healthcare Facility Compliance",
         description:
-          "Texas Administrative Code analysis across 5 healthcare regulatory sections \u2014 admission policies (Section 553.259), patient rights (Section 553.267), emergency preparedness (Section 553.275), coordination of care (Section 553.261), and employee qualifications (Section 553.253). Opulent generates facility-specific compliance matrices with gap analysis.",
+          "Texas Administrative Code analysis across 5 healthcare regulatory sections — admission policies (Section 553.259), patient rights (Section 553.267), emergency preparedness (Section 553.275), coordination of care (Section 553.261), and employee qualifications (Section 553.253). Opulent generates facility-specific compliance matrices with gap analysis.",
         artifacts:
           "5 Texas Administrative Code sections covering full operational compliance",
       },
@@ -240,10 +241,10 @@ const industries = [
   {
     id: "manufacturing-building",
     icon: Factory,
-    badge: "4 Validated Tasks  \u00b7  Operations & Safety",
+    badge: "4 Validated Tasks  ·  Operations & Safety",
     title: "Manufacturing & Building Operations",
     subtitle:
-      "Multi-year operations data and safety specification analysis \u2014 4 validated tasks across manufacturing analytics and building compliance.",
+      "Multi-year operations data and safety specification analysis — 4 validated tasks across manufacturing analytics and building compliance.",
     useCases: [
       {
         title: "Manufacturing Site Analytics (Multi-Year)",
@@ -255,14 +256,14 @@ const industries = [
       {
         title: "Fire Door Specification Analysis",
         description:
-          "Comparative analysis of fire-rated door products \u2014 SentinelGuard FD60, AegisCore FR60, and Fireline Veritas FR60. Opulent extracts performance specifications, compares against building code requirements, and generates procurement comparison matrices with compliance verification.",
+          "Comparative analysis of fire-rated door products — SentinelGuard FD60, AegisCore FR60, and Fireline Veritas FR60. Opulent extracts performance specifications, compares against building code requirements, and generates procurement comparison matrices with compliance verification.",
         artifacts:
           "Three FR60-rated fire door specification sheets (PDF)",
       },
       {
         title: "Bus Fleet Operations Analytics",
         description:
-          "Bus fleet operations data analysis \u2014 route optimization, schedule adherence, and operational efficiency metrics. Opulent processes transportation datasets and identifies underperforming routes, peak demand patterns, and resource allocation improvements.",
+          "Bus fleet operations data analysis — route optimization, schedule adherence, and operational efficiency metrics. Opulent processes transportation datasets and identifies underperforming routes, peak demand patterns, and resource allocation improvements.",
         artifacts: "Bus operations dataset (XLSX)",
       },
       {
@@ -276,15 +277,15 @@ const industries = [
   {
     id: "market-intelligence",
     icon: LineChart,
-    badge: "9 Validated Tasks  \u00b7  Strategy & Forecasting",
+    badge: "9 Validated Tasks  ·  Strategy & Forecasting",
     title: "Market Intelligence & Corporate Strategy",
     subtitle:
-      "From autonomous vehicle forecasts to spinoff planning \u2014 9 validated tasks across forecasting, pricing, and competitive intelligence.",
+      "From autonomous vehicle forecasts to spinoff planning — 9 validated tasks across forecasting, pricing, and competitive intelligence.",
     useCases: [
       {
         title: "Autonomous Vehicle Market Forecasting",
         description:
-          "Dual-source market analysis \u2014 2026 autonomous market forecasts combined with company-specific market share projections (AmensaDrive). Opulent synthesizes macro forecasts with competitive positioning data and generates scenario-based investment theses.",
+          "Dual-source market analysis — 2026 autonomous market forecasts combined with company-specific market share projections (AmensaDrive). Opulent synthesizes macro forecasts with competitive positioning data and generates scenario-based investment theses.",
         artifacts:
           "Industry forecast + company-specific market share projections (2 PDFs)",
       },
@@ -297,7 +298,7 @@ const industries = [
       {
         title: "Pricing Strategy Optimization",
         description:
-          "Multi-format pricing analysis \u2014 visual optimization curves (price multiplier charts, subscriber growth), combined with presentation-format pricing models (usage-based pricing). Opulent processes both quantitative data and strategic frameworks to recommend pricing tiers.",
+          "Multi-format pricing analysis — visual optimization curves (price multiplier charts, subscriber growth), combined with presentation-format pricing models (usage-based pricing). Opulent processes both quantitative data and strategic frameworks to recommend pricing tiers.",
         artifacts:
           "Pricing optimization charts (PNG), subscriber analytics (PNG), pricing model deck (PPTX)",
       },
@@ -310,7 +311,7 @@ const industries = [
       {
         title: "Decision Scoring Frameworks",
         description:
-          "Multi-criteria decision analysis \u2014 Opulent processes scoring matrices, validates weighting methodologies, runs sensitivity analysis on criteria weights, and generates ranked recommendation reports with confidence intervals.",
+          "Multi-criteria decision analysis — Opulent processes scoring matrices, validates weighting methodologies, runs sensitivity analysis on criteria weights, and generates ranked recommendation reports with confidence intervals.",
         artifacts: "Decision criteria scoring documents (PDF)",
       },
       {
@@ -335,22 +336,23 @@ const industries = [
         title: "Strategic Planning & Board Materials",
         description:
           "Board presentation preparation combining spinoff analysis, market forecasts, and competitive positioning. Opulent generates executive-ready strategy decks with data-backed recommendations and scenario planning frameworks.",
-        artifacts: "Spinoff plans, market forecasts, competitive intelligence (PDF, PPTX)",
+        artifacts:
+          "Spinoff plans, market forecasts, competitive intelligence (PDF, PPTX)",
       },
     ],
   },
   {
     id: "government-policy",
     icon: Building2,
-    badge: "4 Validated Tasks  \u00b7  Trade & Legislative",
+    badge: "4 Validated Tasks  ·  Trade & Legislative",
     title: "Government, Policy & Regulation",
     subtitle:
-      "Trade policy to legislative analysis \u2014 4 validated tasks covering tariff modeling, fiscal policy, and congressional bill analysis.",
+      "Trade policy to legislative analysis — 4 validated tasks covering tariff modeling, fiscal policy, and congressional bill analysis.",
     useCases: [
       {
         title: "Trade Policy & Tariff Analysis",
         description:
-          "White House policy document processing \u2014 reciprocal tariff rate modifications. Opulent extracts rate schedules, identifies affected product categories (HTS codes), models cost impact on supply chains, and generates compliance guidance for affected importers.",
+          "White House policy document processing — reciprocal tariff rate modifications. Opulent extracts rate schedules, identifies affected product categories (HTS codes), models cost impact on supply chains, and generates compliance guidance for affected importers.",
         artifacts: "White House tariff policy documents (PDF)",
       },
       {
@@ -376,10 +378,10 @@ const industries = [
   {
     id: "enterprise-operations",
     icon: Briefcase,
-    badge: "5 Validated Tasks  \u00b7  HR, Metrics & Communications",
+    badge: "5 Validated Tasks  ·  HR, Metrics & Communications",
     title: "Enterprise Operations",
     subtitle:
-      "HR analytics, product metrics, and communications intelligence \u2014 5 validated tasks for operational workflows.",
+      "HR analytics, product metrics, and communications intelligence — 5 validated tasks for operational workflows.",
     useCases: [
       {
         title: "Employee Compensation Analytics",
@@ -402,7 +404,7 @@ const industries = [
       {
         title: "Email Intelligence & Communications Audit",
         description:
-          "Multi-source email analysis \u2014 summit correspondence, email chains, and professional communications (Dr. Anne John). Opulent processes email compilations, extracts action items, identifies decision threads, maps stakeholder positions, and generates structured communication summaries.",
+          "Multi-source email analysis — summit correspondence, email chains, and professional communications (Dr. Anne John). Opulent processes email compilations, extracts action items, identifies decision threads, maps stakeholder positions, and generates structured communication summaries.",
         artifacts:
           "Email compilations (PDF), email chains (PDF), professional correspondence (DOCX)",
       },
@@ -416,16 +418,294 @@ const industries = [
   },
 ];
 
+const summaryData = [
+  {
+    vertical: "Financial Services",
+    tasks: 14,
+    documentTypes: "XLSX, PDF",
+    subCategories: "LBO, SEC, M&A, Compliance, Privacy, Transactions",
+  },
+  {
+    vertical: "Legal & Compliance",
+    tasks: 12,
+    documentTypes: "PDF, DOCX",
+    subCategories: "Contract, Lease, Antitrust, GDPR, Evidence, IP, Maritime",
+  },
+  {
+    vertical: "Healthcare & Pharma",
+    tasks: 4,
+    documentTypes: "PDF",
+    subCategories: "FDA, State Health Codes",
+  },
+  {
+    vertical: "Manufacturing & Building",
+    tasks: 4,
+    documentTypes: "XLSX, PDF",
+    subCategories: "Operations Analytics, Fire Safety, Transportation",
+  },
+  {
+    vertical: "Market Intelligence",
+    tasks: 9,
+    documentTypes: "PDF, XLSX, PNG, PPTX",
+    subCategories: "Forecasting, Strategy, Pricing, Competitive, Survey",
+  },
+  {
+    vertical: "Government & Policy",
+    tasks: 4,
+    documentTypes: "PDF, PPTX",
+    subCategories: "Trade, Economic, Legislative, Geographic",
+  },
+  {
+    vertical: "Enterprise Operations",
+    tasks: 5,
+    documentTypes: "XLSX, PDF, DOCX",
+    subCategories:
+      "HR, Product, Business Metrics, Communications, Insurance",
+  },
+];
+
+const navItems = [
+  { icon: Landmark, label: "Financial Services", tasks: "14 tasks", href: "#financial-services" },
+  { icon: Scale, label: "Legal & Compliance", tasks: "12 tasks", href: "#legal-compliance" },
+  { icon: HeartPulse, label: "Healthcare & Pharma", tasks: "4 tasks", href: "#healthcare-pharma" },
+  { icon: Factory, label: "Manufacturing", tasks: "4 tasks", href: "#manufacturing-building" },
+  { icon: LineChart, label: "Market Intelligence", tasks: "9 tasks", href: "#market-intelligence" },
+  { icon: Building2, label: "Government & Policy", tasks: "4 tasks", href: "#government-policy" },
+  { icon: Briefcase, label: "Enterprise Ops", tasks: "5 tasks", href: "#enterprise-operations" },
+];
+
+/* ────────────────────────────────────────
+   PAGE
+   ──────────────────────────────────────── */
+
 export default function UseCasesPage() {
   return (
     <main className="pt-20">
-      <UseCasesHero />
-      <BenchmarkStats />
-      {industries.map((industry) => (
-        <IndustrySection key={industry.id} {...industry} />
-      ))}
-      <BenchmarkSummary />
-      <UseCasesCTA />
+      {/* ── Hero ── */}
+      <section className="w-full">
+        <div className="container mx-auto">
+          <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+            <div>
+              <Badge variant="outline">
+                {"50 Tasks · 38 Categories · 80+ Documents"}
+              </Badge>
+            </div>
+            <div className="flex gap-4 flex-col">
+              <h1 className="text-5xl md:text-7xl max-w-3xl tracking-tighter text-center font-regular text-balance">
+                Industry Use Cases
+              </h1>
+              <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center text-balance">
+                Real-world enterprise tasks validated against the Apex Agent QA
+                benchmark. Every use case below represents a real task validated
+                against actual enterprise documents including LBO models, SEC
+                filings, federal regulations, multi-party contracts,
+                manufacturing datasets, and market forecasts.
+              </p>
+            </div>
+            <div className="flex flex-row gap-3">
+              <Button size="lg" className="gap-4" variant="outline" asChild>
+                <a href="https://opulentia.ai/enterprise">
+                  Talk to Founders <PhoneCall className="w-4 h-4" />
+                </a>
+              </Button>
+              <Button size="lg" className="gap-4" asChild>
+                <a href="https://platform.opulentia.ai">
+                  Get Started <MoveRight className="w-4 h-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Industry Nav ── */}
+      <section className="w-full py-12 lg:py-20 border-y">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-6 lg:gap-4">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="flex flex-col items-center gap-2 text-center group"
+                >
+                  <div className="flex items-center justify-center w-12 h-12 rounded-md border bg-muted group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <p className="text-sm font-medium leading-tight">
+                    {item.label}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{item.tasks}</p>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Industry Sections ── */}
+      {industries.map((industry) => {
+        const Icon = industry.icon;
+        return (
+          <section
+            key={industry.id}
+            id={industry.id}
+            className="w-full py-20 lg:py-32 scroll-mt-24"
+          >
+            <div className="container mx-auto">
+              <div className="flex flex-col gap-10">
+                {/* heading */}
+                <div className="flex gap-4 flex-col items-start">
+                  <div>
+                    <Badge>{industry.badge}</Badge>
+                  </div>
+                  <div className="flex gap-2 flex-col">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-md border bg-muted">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h2 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular text-left text-balance">
+                        {industry.title}
+                      </h2>
+                    </div>
+                    <p className="text-lg max-w-xl lg:max-w-lg leading-relaxed tracking-tight text-muted-foreground text-left">
+                      {industry.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                {/* cards grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {industry.useCases.map((useCase) => (
+                    <div
+                      key={useCase.title}
+                      className="flex flex-col justify-between gap-4 p-6 border rounded-md bg-card hover:bg-muted/50 transition-colors"
+                    >
+                      <div className="flex flex-col gap-2">
+                        <h3 className="text-lg font-medium tracking-tight">
+                          {useCase.title}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                          {useCase.description}
+                        </p>
+                      </div>
+                      <div className="flex flex-col gap-1 pt-2 border-t">
+                        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                          Validated Artifacts
+                        </p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          {useCase.artifacts}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* ── Benchmark Summary ── */}
+      <section className="w-full py-20 lg:py-32">
+        <div className="container mx-auto">
+          <div className="flex flex-col gap-10">
+            <div className="flex gap-4 flex-col items-start">
+              <div>
+                <Badge>Benchmark</Badge>
+              </div>
+              <div className="flex gap-2 flex-col">
+                <h2 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular text-left">
+                  Benchmark Summary
+                </h2>
+                <p className="text-lg max-w-xl leading-relaxed tracking-tight text-muted-foreground text-left">
+                  Opulent processes all document formats (PDF, DOCX, XLSX, PPTX,
+                  PNG, CSV) with autonomous extraction, cross-referencing, and
+                  synthesis.
+                </p>
+              </div>
+            </div>
+            <div className="border rounded-md overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b bg-muted">
+                      <th className="text-left p-4 font-medium">Vertical</th>
+                      <th className="text-left p-4 font-medium">Tasks</th>
+                      <th className="text-left p-4 font-medium hidden sm:table-cell">
+                        Document Types
+                      </th>
+                      <th className="text-left p-4 font-medium hidden md:table-cell">
+                        Sub-Categories
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {summaryData.map((row) => (
+                      <tr
+                        key={row.vertical}
+                        className="border-b last:border-b-0"
+                      >
+                        <td className="p-4 font-medium">{row.vertical}</td>
+                        <td className="p-4">{row.tasks}</td>
+                        <td className="p-4 text-muted-foreground hidden sm:table-cell">
+                          {row.documentTypes}
+                        </td>
+                        <td className="p-4 text-muted-foreground hidden md:table-cell">
+                          {row.subCategories}
+                        </td>
+                      </tr>
+                    ))}
+                    <tr className="bg-muted">
+                      <td className="p-4 font-semibold">Total</td>
+                      <td className="p-4 font-semibold">50 tasks</td>
+                      <td className="p-4 font-semibold hidden sm:table-cell">
+                        80+ documents
+                      </td>
+                      <td className="p-4 font-semibold hidden md:table-cell">
+                        38 categories
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="w-full py-20 lg:py-40">
+        <div className="container mx-auto">
+          <div className="flex flex-col text-center bg-muted rounded-md p-4 lg:p-14 gap-8 items-center">
+            <div>
+              <Badge>Get Started</Badge>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular">
+                Ready to automate enterprise workflows?
+              </h3>
+              <p className="text-lg leading-relaxed tracking-tight text-muted-foreground max-w-xl">
+                Every use case above is validated against real enterprise
+                documents. No manual preprocessing required.
+              </p>
+            </div>
+            <div className="flex flex-row gap-4">
+              <Button className="gap-4" variant="outline" asChild>
+                <a href="https://opulentia.ai/enterprise">
+                  Talk to Founders <PhoneCall className="w-4 h-4" />
+                </a>
+              </Button>
+              <Button className="gap-4" asChild>
+                <a href="https://platform.opulentia.ai">
+                  Get Started <MoveRight className="w-4 h-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
