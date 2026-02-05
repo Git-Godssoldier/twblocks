@@ -12,6 +12,11 @@ export const Header = () => {
       href: "/",
       description: "",
     },
+    {
+      title: "Use Cases",
+      href: "/use-cases",
+      description: "",
+    },
   ];
 
   const [isOpen, setOpen] = useState(false);
